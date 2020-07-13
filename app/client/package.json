@@ -1,0 +1,23 @@
+{
+  "name": "team-feud",
+  "version": "1.0.0",
+  "description": "team game",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjscholl/team-feud.git"
+  },
+  "author": "cjscholl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cjscholl/team-feud/issues"
+  },
+  "homepage": "https://github.com/cjscholl/team-feud#readme",
+  "dependencies": {
+    "react": "^16.13.1",
+    "redux": "^4.0.5"
+  }
+}
