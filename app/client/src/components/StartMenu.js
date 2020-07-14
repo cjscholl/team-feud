@@ -44,6 +44,7 @@ const StartButton = styled.button`
     &:hover {
         box-shadow: 0 0 11px rgba(33,33,33,.2); 
     }
+    
 `;
 
 const StyledInput = styled.input`
