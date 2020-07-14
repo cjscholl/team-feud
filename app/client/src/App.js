@@ -6,14 +6,20 @@ import {
 import GameMenu from './components/GameMenu';
 import StartMenu from './components/StartMenu';
 import Game from './components/Game';
-
+import Header from './components/common/Header';
+import Content from './components/common/Content';
 export const App = () => (
-    <Router basename="/teamfeud">
-        <Route path="/home" component={GameMenu}/>
-        <Route path="/start" component={StartMenu}/>
-        <Route path="/game" component={Game}/>
-        <Route path="/create" render={() => <CreateMenu/>}/>
-    </Router>
+    <>
+        <Header/>
+        <Content>
+            <Router basename="/teamfeud">
+                <Route path="/home" component={GameMenu}/>
+                <Route path="/start" component={StartMenu}/>
+                <Route path="/game" component={Game}/>
+                <Route path="/create" render={() => <CreateMenu/>}/>
+            </Router>
+        </Content>
+    </>
 )
 
 export default App;
