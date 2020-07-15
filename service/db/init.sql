@@ -9,28 +9,36 @@ CREATE TABLE IF NOT EXISTS games (
 CREATE TABLE IF NOT EXISTS questions (
     id INT NOT NULL AUTO_INCREMENT,
     PRIMARY KEY (id), 
-    FOREIGN KEY (gameId) REFERENCES games(id)
-    question varchar(255) NOT NULL
+    gameId INT NOT NULL,
+    FOREIGN KEY (gameId) REFERENCES games(id),
+    question VARCHAR(255) NOT NULL
 );
 
--- CREATE TABLE IF NOT EXISTS answers (
---     PRIMARY KEY (id), 
---     FOREIGN KEY (questionId) REFERENCES questions(id),
---     answers varchar(255) NOT NULL,
---     points int NOT NULL
--- );
+CREATE TABLE IF NOT EXISTS answers (
+    id INT NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (id), 
+    questionId INT NOT NULL,
+    FOREIGN KEY (questionId) REFERENCES questions(id),
+    answers VARCHAR(255) NOT NULL,
+    points INT NOT NULL
+);
 
--- CREATE TABLE IF NOT EXISTS teams (
---     PRIMARY KEY (id), 
---     teamName varchar(255) NOT NULL
--- );
+CREATE TABLE IF NOT EXISTS teams (
+    id INT NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (id), 
+    teamName varchar(255) NOT NULL
+);
 
--- CREATE TABLE IF NOT EXISTS gameSessions (
---     PRIMARY KEY (id), 
---     FOREIGN KEY (gameId) REFERENCES game(id),
---     FOREIGN KEY (team1Id) REFERENCES team(id),
---     FOREIGN KEY (team1Id) REFERENCES team(id),
---     team1Points int,
---     team2Points int,
---     currentRound int
--- );
+CREATE TABLE IF NOT EXISTS gameSessions (
+    id INT NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (id), 
+    gameId INT NOT NULL,
+    FOREIGN KEY (gameId) REFERENCES games(id),
+    team1Id INT NOT NULL,
+    FOREIGN KEY (team1Id) REFERENCES teams(id),
+    team2Id INT NOT NULL,
+    FOREIGN KEY (team1Id) REFERENCES teams(id),
+    team1Points int,
+    team2Points int,
+    currentRound int
+);
