@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes, { string } from 'prop-types';
+import PropTypes from 'prop-types';
 
 const TeamHeader = styled.h2`
     color: blue;
@@ -9,7 +9,7 @@ const TeamHeader = styled.h2`
 const TeamScore = styled.h3``;
 
 export const TeamInfo = ({ teamId, teamName, teamScore }) => (
-  <div>
+  <div id={teamId}>
     <TeamHeader>{teamName}</TeamHeader>
     <TeamScore>{teamScore}</TeamScore>
   </div>
@@ -18,7 +18,7 @@ export const TeamInfo = ({ teamId, teamName, teamScore }) => (
 export default TeamInfo;
 
 TeamInfo.propTypes = {
-    teamName: PropTypes.string,
-    teamId: PropTypes.string,
-    teamScore: PropTypes.number
-}
+  teamName: PropTypes.string,
+  teamId: PropTypes.string,
+  teamScore: PropTypes.number,
+};
