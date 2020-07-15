@@ -32,15 +32,23 @@ export const generateAnswerBoxColumns = (answersList = [
   { answer: 'Answer7', points: 12 },
 
 ]) => {
-  const columnOne = answersList.slice(0, 4);
+  const columnOne = answersList.slice(0, 5);
   const columnTwo = answersList.slice(5);
   return (
     <>
       <AnswerColumn>
-        {columnOne.map(({ answer, points }) => <AnswerBox answer={answer} points={points} />)}
+        {columnOne.map(
+          ({ answer, points }, index) => (
+            <AnswerBox answerNumber={index + 1} answer={answer} points={points} />
+          ),
+        )}
       </AnswerColumn>
       <AnswerColumn>
-        {columnTwo.map(({ answer, points }) => <AnswerBox answer={answer} points={points} />)}
+        {columnTwo.map(
+          ({ answer, points }, index) => (
+            <AnswerBox answerNumber={index + 6} answer={answer} points={points} />
+          ),
+        )}
       </AnswerColumn>
     </>
   );
