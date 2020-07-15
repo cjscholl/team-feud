@@ -1,5 +1,6 @@
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './src/index.js',
@@ -28,6 +29,7 @@ module.exports = {
         { from: 'src/index.html' },
       ],
     }),
+    new webpack.HotModuleReplacementPlugin(),
   ],
 
 };
