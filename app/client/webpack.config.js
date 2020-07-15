@@ -13,6 +13,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
+    historyApiFallback: true,
     hot: true,
     port: 8080,
     publicPath: 'http://localhost:8080/teamfeud/',
@@ -20,6 +21,7 @@ module.exports = {
   module: {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
+      { test: /\.css$/i, use: ['style-loader', 'css-loader'] },
     ],
   },
   plugins: [
