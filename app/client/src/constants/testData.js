@@ -5,14 +5,27 @@ export const testData = [
     rounds: [
       {
         question: 'This is question 1',
-        answers: ['Answer1', 'Answer2', 'Answer3'],
+        answers: [
+          { answer: 'Answer1', points: 23 },
+          { answer: 'Answer2', points: 15 },
+          { answer: 'Answer3', points: 12 },
+        ],
       },
       {
         question: 'This is question 2',
-        answers: ['Answer1', 'Answer2', 'Answer3'],
+        answers: [
+          { answer: 'Answer1', points: 23 },
+          { answer: 'Answer2', points: 15 },
+          { answer: 'Answer3', points: 12 },
+        ],
       },
       {
         question: 'This is question 2',
+        answers: [
+          { answer: 'Answer1', points: 23 },
+          { answer: 'Answer2', points: 15 },
+          { answer: 'Answer3', points: 12 },
+        ],
         answers: ['Answer1', 'Answer2', 'Answer3'],
       },
     ],
@@ -23,15 +36,27 @@ export const testData = [
     rounds: [
       {
         question: 'This is question 1',
-        answers: ['Answer1', 'Answer2', 'Answer3'],
+        answers: [
+          { answer: 'Answer1', points: 23 },
+          { answer: 'Answer2', points: 15 },
+          { answer: 'Answer3', points: 12 },
+        ],
       },
       {
         question: 'This is question 2',
-        answers: ['Answer1', 'Answer2', 'Answer3'],
+        answers: [
+          { answer: 'Answer1', points: 23 },
+          { answer: 'Answer2', points: 15 },
+          { answer: 'Answer3', points: 12 },
+        ],
       },
       {
         question: 'This is question 2',
-        answers: ['Answer1', 'Answer2', 'Answer3'],
+        answers: [
+          { answer: 'Answer1', points: 23 },
+          { answer: 'Answer2', points: 15 },
+          { answer: 'Answer3', points: 12 },
+        ],
       },
     ],
   },
@@ -41,15 +66,27 @@ export const testData = [
     rounds: [
       {
         question: 'This is question 1',
-        answers: ['Answer1', 'Answer2', 'Answer3'],
+        answers: [
+          { answer: 'Answer1', points: 23 },
+          { answer: 'Answer2', points: 15 },
+          { answer: 'Answer3', points: 12 },
+        ],
       },
       {
         question: 'This is question 2',
-        answers: ['Answer1', 'Answer2', 'Answer3'],
+        answers: [
+          { answer: 'Answer1', points: 23 },
+          { answer: 'Answer2', points: 15 },
+          { answer: 'Answer3', points: 12 },
+        ],
       },
       {
         question: 'This is question 2',
-        answers: ['Answer1', 'Answer2', 'Answer3'],
+        answers: [
+          { answer: 'Answer1', points: 23 },
+          { answer: 'Answer2', points: 15 },
+          { answer: 'Answer3', points: 12 },
+        ],
       },
     ],
   },
