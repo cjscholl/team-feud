@@ -26,7 +26,6 @@ export const testData = [
           { answer: 'Answer2', points: 15 },
           { answer: 'Answer3', points: 12 },
         ],
-        answers: ['Answer1', 'Answer2', 'Answer3'],
       },
     ],
   },

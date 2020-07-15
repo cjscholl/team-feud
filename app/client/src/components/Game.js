@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import GameBoard from './GameBoard/GameBoard';
+import TeamInfo from './TeamInfo';
 
 const GameContainer = styled.div`
     display: flex; 
@@ -16,9 +17,9 @@ const TeamContainer = styled.div`
 
 export const Game = () => (
   <GameContainer>
-    <TeamContainer />
+    <TeamContainer><TeamInfo teamId="1" teamNumber="1" teamName="Catelyn" teamScore={100} strikes={3} /></TeamContainer>
     <GameBoardContainer><GameBoard /></GameBoardContainer>
-    <TeamContainer />
+    <TeamContainer><TeamInfo teamId="1" teamNumber="1" teamName="Catelyn" teamScore={100} strikes={3} /></TeamContainer>
   </GameContainer>
 );
 
