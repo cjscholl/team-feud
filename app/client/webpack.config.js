@@ -18,6 +18,12 @@ module.exports = {
     hot: true,
     port: 8080,
     publicPath: 'http://localhost:8080/teamfeud/',
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8090',
+        secure: false,
+      },
+    },
   },
   module: {
     rules: [
