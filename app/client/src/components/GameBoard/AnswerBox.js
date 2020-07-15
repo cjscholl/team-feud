@@ -13,12 +13,19 @@ const AnswerBoxContainer = styled.div`
     margin: 5px;
 `;
 
+export const AnswerNumberText = styled.span`
+  border-radius: 50%;
+  background-color: #63D2FF;
+  color: white;
+  width: 30px;
+`;
+
 export const AnswerBox = ({
   answerNumber, answer, points, updateRoundPoints,
 }) => {
   const [isShowing, toggleIsShowing] = useState(false);
 
-  const dispalyText = isShowing ? `${answer} - ${points}` : answerNumber;
+  const dispalyText = isShowing ? `${answer} - ${points}` : <AnswerNumberText>{answerNumber}</AnswerNumberText>;
 
   const handleClick = () => {
     if (!isShowing) {
