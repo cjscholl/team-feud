@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import AnswerBox from './AnswerBox';
-import { roundActions } from '../../actions/roundActions';
 
 const RoundHeader = styled.h2`
   color: #8AEA92;
