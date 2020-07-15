@@ -7,29 +7,29 @@ module.exports = {
   output: {
     filename: 'main.bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/teamfeud/'
+    publicPath: '/teamfeud/',
   },
-  resolve: { extensions: ["*", ".js", ".jsx"] },
+  resolve: { extensions: ['*', '.js', '.jsx'] },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     historyApiFallback: true,
     hot: true,
     port: 8080,
-    publicPath: 'http://localhost:8080/teamfeud/'
+    publicPath: 'http://localhost:8080/teamfeud/',
   },
   module: {
     rules: [
-        { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
-        {test: /\.css$/i, use: ['style-loader', 'css-loader'] }
-    ]
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
+      { test: /\.css$/i, use: ['style-loader', 'css-loader'] },
+    ],
   },
   plugins: [
     new CopyPlugin({
       patterns: [
-        { from: 'src/index.html' }
+        { from: 'src/index.html' },
       ],
     }),
   ],
-  
+
 };

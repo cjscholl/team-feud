@@ -7,6 +7,6 @@ const StyledContent = styled.div`
     margin: 0px 100px;  
 `;
 
-export const Content = ({children}) => <StyledContent>{children}</StyledContent>
+export const Content = ({ children }) => <StyledContent>{children}</StyledContent>;
 
 export default Content;

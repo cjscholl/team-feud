@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { testData } from '../constants/testData';
 import { useHistory } from 'react-router-dom';
+import { testData } from '../constants/testData';
 
 const StartMenuContainer = styled.div`
     display: flex;
@@ -20,8 +20,8 @@ const SelectionItem = styled.li`
     padding: 10px;
     margin: 10px;
     font-family: 'Oswald', sans-serif;
-    background-color: ${props => props.isSelected ? '#11B5E4' : 'white'};
-    color: ${props => props.isSelected ? 'white' : '#11B5E4'};
+    background-color: ${(props) => (props.isSelected ? '#11B5E4' : 'white')};
+    color: ${(props) => (props.isSelected ? 'white' : '#11B5E4')};
     width: 800px;
     transition: box-shadow .3s;
 
@@ -56,28 +56,35 @@ const StyledInput = styled.input`
 `;
 
 export const StartMenu = () => {
-    const history = useHistory()
-    const [teams, setTeam] = useState({
-        team1: '',
-        team2: ''
-    });
-    const [selectedGameId, setSelectedGame] = useState(null);
-    const handleTeamSelection = team => e => {
-        setTeam({...teams, [team]: e.target.value});
-    }
-    const handleStartGame = () => {
-        history.push(`/game/${selectedGameId}/round/1`)
-    }
-    return (
-        <StartMenuContainer>
-            <StyledInput placeholder="Team 1" onChange={handleTeamSelection('team1')}/>
-            <StyledInput placeholder="Team 2" onChange={handleTeamSelection('team2')}/>
-            <SelectionMenu>
-                {testData.map(game => <SelectionItem isSelected={selectedGameId === game.id} onClick={() => setSelectedGame(game.id)}>{game.gameName}</SelectionItem>)}
-            </SelectionMenu>
-            <StartButton onClick={handleStartGame}>Start!</StartButton>
-        </StartMenuContainer>
-    )
-}
+  const history = useHistory();
+  const [teams, setTeam] = useState({
+    team1: '',
+    team2: '',
+  });
+  const [selectedGameId, setSelectedGame] = useState(null);
+  const handleTeamSelection = (team) => (e) => {
+    setTeam({ ...teams, [team]: e.target.value });
+  };
+  const handleStartGame = () => {
+    history.push(`/game/${selectedGameId}/round/1`);
+  };
+  return (
+    <StartMenuContainer>
+      <StyledInput placeholder="Team 1" onChange={handleTeamSelection('team1')} />
+      <StyledInput placeholder="Team 2" onChange={handleTeamSelection('team2')} />
+      <SelectionMenu>
+        {testData.map((game) => (
+          <SelectionItem
+            isSelected={selectedGameId === game.id}
+            onClick={() => setSelectedGame(game.id)}
+          >
+            {game.gameName}
+          </SelectionItem>
+        ))}
+      </SelectionMenu>
+      <StartButton onClick={handleStartGame}>Start!</StartButton>
+    </StartMenuContainer>
+  );
+};
 
 export default StartMenu;
