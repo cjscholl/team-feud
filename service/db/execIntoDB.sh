@@ -1,1 +1,1 @@
-docker exec -it mysql /bin/bash
+docker exec -it team-feud-mysql /bin/bash
