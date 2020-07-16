@@ -65,9 +65,11 @@ export const StartMenu = () => {
   const handleTeamSelection = (team) => (e) => {
     setTeam({ ...teams, [team]: e.target.value });
   };
+
   const handleStartGame = () => {
-    history.push(`/game/${selectedGameId}/round/1`);
+    history.push(`/game/${selectedGameId}/1`);
   };
+
   return (
     <StartMenuContainer>
       <StyledInput placeholder="Team 1" onChange={handleTeamSelection('team1')} />

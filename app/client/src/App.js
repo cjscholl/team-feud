@@ -16,7 +16,7 @@ export const App = () => (
       <Router basename="/teamfeud">
         <Route exact path="/" component={GameMenu} />
         <Route path="/start" component={StartMenu} />
-        <Route path="/game" component={Game} />
+        <Route path="/game/:gameId/:roundId" component={Game} />
         {/* <Route path="/create" render={() => <CreateMenu />} /> */}
       </Router>
     </Content>

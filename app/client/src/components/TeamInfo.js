@@ -75,7 +75,7 @@ export const TeamInfo = ({
     <StrikeHeader>Strikes</StrikeHeader>
     <StrikeContainer>
       {
-        [...Array(strikes)].map(() => <Strike>X</Strike>)
+        [...Array(strikes)].map(() => <Strike key={Math.random()}>X</Strike>)
       }
     </StrikeContainer>
   </StyledTeamInfo>
@@ -87,7 +87,7 @@ TeamInfo.propTypes = {
   teamName: PropTypes.string,
   teamId: PropTypes.string,
   teamScore: PropTypes.number,
-  teamNumber: PropTypes.number,
+  teamNumber: PropTypes.oneOf([1, 2]),
   strikes: PropTypes.number,
   onWinClick: PropTypes.func,
 };
