@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import { DBTable, DBGame, DBQuestion, DBAnswer, Game, Question, Answer, Rounds } from '../types';
-import { MySqlReadActionProvider } from '../actions/MySqlReadActionProvider';
+import { MySqlReadAction } from '../actions/MySqlReadAction';
 import { DBConfig } from '../types';
 import { Coordinator } from './Coordinator';
 
@@ -11,9 +11,9 @@ export class RetrieveGamesCoordinator extends Coordinator<Array<Game>> {
     }
     async execute(): Promise<Array<Game>> {
         const [dbGames, dbQuestions, dbAnswers]: Array<Array<DBTable>> = await Promise.all([
-            new MySqlReadActionProvider<DBGame>(DBGame, DBGame.tableName, this.dbConfig).execute(),
-            new MySqlReadActionProvider<DBQuestion>(DBQuestion, DBQuestion.tableName, this.dbConfig).execute(),
-            new MySqlReadActionProvider<DBAnswer>(DBAnswer, DBAnswer.tableName, this.dbConfig).execute()
+            new MySqlReadAction<DBGame>(DBGame, DBGame.tableName, this.dbConfig).execute(),
+            new MySqlReadAction<DBQuestion>(DBQuestion, DBQuestion.tableName, this.dbConfig).execute(),
+            new MySqlReadAction<DBAnswer>(DBAnswer, DBAnswer.tableName, this.dbConfig).execute()
         ]);
         
         const games: Array<Game> = [];
