@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS answers (
     PRIMARY KEY (id), 
     questionId INT NOT NULL,
     FOREIGN KEY (questionId) REFERENCES questions(id),
-    answers VARCHAR(255) NOT NULL,
+    answer VARCHAR(255) NOT NULL,
     points INT NOT NULL
 );
 

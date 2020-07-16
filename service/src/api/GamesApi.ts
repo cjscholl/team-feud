@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { GetGamesAction } from '../actions/GetGamesAction';
 import { DBConfig } from '../types';
+import { RetrieveGamesCoordinator } from '../coordinators/RetrieveGamesCoordiantor';
 
 export default class GamesApi {
     dbConfig: DBConfig;
@@ -14,7 +15,7 @@ export default class GamesApi {
     }
     async _getGames(req: Request, res: Response): Promise<void> {
         try {
-            const games = await new GetGamesAction(this.dbConfig).execute();
+            const games = await new RetrieveGamesCoordinator(this.dbConfig).execute();
             res.send(games);
         } catch (err) {
             console.log(err);
