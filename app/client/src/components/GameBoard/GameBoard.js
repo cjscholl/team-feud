@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import AnswerBox from './AnswerBox';
+import Button from '../common/Button';
 
 const RoundHeader = styled.h2`
   color: #8AEA92;
@@ -16,12 +17,12 @@ const RoundHeader = styled.h2`
 const AnswersContainer = styled.div` 
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 const AnswerColumn = styled.div`
   width: 50%;
-  padding-bottom: 18%;
+  padding-bottom: 50px;
   margin-bottom: 2%;
   align-items: center;
   text-align: center;
@@ -37,16 +38,7 @@ const RoundPoints = styled.div`
   border: 3px solid #172A3A;
 `;
 
-export const generateAnswerBoxColumns = (answersList = [
-  { answer: 'Answer1', points: 23 },
-  { answer: 'Answer2', points: 15 },
-  { answer: 'Answer3', points: 12 },
-  { answer: 'Answer4', points: 12 },
-  { answer: 'Answer5', points: 12 },
-  { answer: 'Answer6', points: 12 },
-  { answer: 'Answer7', points: 12 },
-
-]) => {
+export const generateAnswerBoxColumns = (answersList) => {
   const columnOne = answersList.slice(0, 5);
   const columnTwo = answersList.slice(5);
   return (
@@ -58,6 +50,7 @@ export const generateAnswerBoxColumns = (answersList = [
           ),
         )}
       </AnswerColumn>
+      {answersList.length > 5 && (
       <AnswerColumn>
         {columnTwo.map(
           ({ answer, points }, index) => (
@@ -65,6 +58,7 @@ export const generateAnswerBoxColumns = (answersList = [
           ),
         )}
       </AnswerColumn>
+      )}
     </>
   );
 };
@@ -80,13 +74,20 @@ export const GameBoard = ({
     <AnswersContainer>
       {generateAnswerBoxColumns(answersList, updateRoundPoints)}
     </AnswersContainer>
+    <RoundHeader>
+      <Button>End Round</Button>
+    </RoundHeader>
   </>
 );
 
-const mapStateToProps = (state) => ({
-  roundPoints: state.round.points,
-  roundNumber: state.round.number,
-});
+const mapStateToProps = (state, ownProps) => {
+  const { gameId, roundId } = ownProps;
+  return {
+    roundPoints: state.round.points,
+    roundNumber: state.round.number,
+    answersList: state.games[gameId].rounds[roundId].answers,
+  };
+};
 
 export default connect(mapStateToProps)(GameBoard);
 
