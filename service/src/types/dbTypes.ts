@@ -53,3 +53,35 @@ export class DBAnswer extends DBTable {
         this.points = input.points;
     }
 }
+
+export class DBGameSession extends DBTable {
+    static tableName: string = 'gameSessions';
+    id: number;
+    gameId: number;
+    team1Id: number;
+    team2Id: number;
+    team1Points: number;
+    team2Points: number;
+    currentRound: number;
+    constructor(input: { id: number, gameId: number, team1Id: number, team2Id: number, team1Points: number, team2Points: number, currentRound: number }) {
+        super();
+        this.id = input.id;
+        this.gameId = input.gameId;
+        this.team1Id = input.team1Id
+        this.team2Id = input.team2Id;
+        this.team1Points = input.team1Points;
+        this.team2Points = input.team2Points;
+        this.currentRound = input.currentRound;
+    }
+}
+
+export class DBTeam extends DBTable {
+    static tableName: string = 'teams';
+    id: number;
+    teamName: string;
+    constructor(input: { id: number, teamName: string }) {
+        super();
+        this.id = input.id;
+        this.teamName = input.teamName;
+    }
+}
