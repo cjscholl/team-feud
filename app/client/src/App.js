@@ -8,9 +8,11 @@ import StartMenu from './components/StartMenu';
 import Game from './components/Game';
 import Header from './components/common/Header';
 import Content from './components/common/Content';
+import FetchGames from './fetches/FetchGames';
 
 export const App = () => (
   <>
+    <FetchGames />
     <Header />
     <Content>
       <Router basename="/teamfeud">
