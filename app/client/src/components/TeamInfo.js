@@ -45,32 +45,11 @@ const StrikeContainer = styled.div`
   display: flex;
 `;
 
-const Button = styled.button`
-  font-family: 'Oswald','sans-serif';
-  width: 100px;
-  height: 50px;
-  margin-bottom: 1rem;
-  border-radius: 10px;
-  background: #63D2FF;
-    color: white;
-  &:hover {
-    color: #63D2FF;
-    background-color: white;
-  }
-  &:active {
-    background-color: #63D2FF;
-    color: white;
-  }
-  border: 2px solid #172A3A;
-  font-size: 20px;
-`;
-
 export const TeamInfo = ({
-  teamId, teamName, teamScore, teamNumber, strikes = 0, onWinClick,
+  teamId, teamName, teamScore, teamNumber, strikes = 0,
 }) => (
   <StyledTeamInfo id={teamId}>
     <TeamHeader>{`Team ${teamNumber}: ${teamName}`}</TeamHeader>
-    <Button onClick={onWinClick}>Win</Button>
     <PointsBox><TeamScore>{`${teamScore} Points`}</TeamScore></PointsBox>
     <StrikeHeader>Strikes</StrikeHeader>
     <StrikeContainer>
@@ -89,5 +68,4 @@ TeamInfo.propTypes = {
   teamScore: PropTypes.number,
   teamNumber: PropTypes.oneOf([1, 2]),
   strikes: PropTypes.number,
-  onWinClick: PropTypes.func,
 };

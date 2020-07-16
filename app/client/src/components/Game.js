@@ -24,21 +24,21 @@ export const Game = ({
   roundPoints, team1Score, team2Score, onWinClick,
 }) => {
   const { gameId, roundId } = useParams();
-  const handleTeamOneWinClick = () => onWinClick('one', roundPoints);
-  const handleTeamTwoWinClick = () => onWinClick('two', roundPoints);
+  const handleTeamOneWinClick = () => onWinClick('1', roundPoints);
+  const handleTeamTwoWinClick = () => onWinClick('2', roundPoints);
   return (
     <GameContainer>
-      <TeamContainer><TeamInfo teamId="1" teamNumber={1} teamName="Catelyn" teamScore={team1Score} strikes={3} onWinClick={handleTeamOneWinClick} /></TeamContainer>
+      <TeamContainer><TeamInfo teamId="1" teamNumber="1" teamName="Catelyn" teamScore={team1Score} strikes={3} onWinClick={handleTeamOneWinClick} /></TeamContainer>
       <GameBoardContainer><GameBoard gameId={gameId} roundId={roundId} /></GameBoardContainer>
-      <TeamContainer><TeamInfo teamId="2" teamNumber={2} teamName="Catelyn" teamScore={team2Score} strikes={3} onWinClick={handleTeamTwoWinClick} /></TeamContainer>
+      <TeamContainer><TeamInfo teamId="2" teamNumber="2" teamName="Catelyn" teamScore={team2Score} strikes={3} onWinClick={handleTeamTwoWinClick} /></TeamContainer>
     </GameContainer>
   );
 };
 
 const mapStateToProps = (state) => ({
   roundPoints: state.round.points,
-  team1Score: state.team.one.points,
-  team2Score: state.team.two.points,
+  team1Score: state.team['1'].points,
+  team2Score: state.team['2'].points,
 });
 
 const mapDispatchToProps = (dispatch) => ({
