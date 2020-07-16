@@ -1,11 +1,11 @@
 import { teamActionTypes } from '../actions/teamActions';
 
 const initialState = {
-  one: {
+  1: {
     points: 0,
 
   },
-  two: {
+  2: {
     points: 0,
   },
 

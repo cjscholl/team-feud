@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import AnswerBox from './AnswerBox';
 import Button from '../common/Button';
 
-const RoundHeader = styled.h2`
-  color: #8AEA92;
+const RoundContainer = styled.div`
   font-size: 30px;
   text-align: center;
   display: flex;
@@ -29,8 +29,10 @@ const AnswerColumn = styled.div`
 `;
 
 const RoundPoints = styled.div`
+  margin-top: 1rem;
   height: 50px;
   width: 150px;
+  color: #8AEA92;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -64,21 +66,27 @@ export const generateAnswerBoxColumns = (answersList) => {
 };
 
 export const GameBoard = ({
-  roundNumber, roundPoints, answersList, updateRoundPoints,
-}) => (
-  <>
-    <RoundHeader>
-      {`Round ${roundNumber}`}
-      <RoundPoints>{roundPoints}</RoundPoints>
-    </RoundHeader>
-    <AnswersContainer>
-      {generateAnswerBoxColumns(answersList, updateRoundPoints)}
-    </AnswersContainer>
-    <RoundHeader>
-      <Button>End Round</Button>
-    </RoundHeader>
-  </>
-);
+  roundId, roundPoints, answersList, updateRoundPoints,
+}) => {
+  const history = useHistory();
+  const location = useLocation();
+  const handleRoundEndClick = () => { history.push(`${location.pathname}/over`); };
+
+  return (
+    <>
+      <RoundContainer>
+        {`Round ${roundId}`}
+        <RoundPoints>{roundPoints}</RoundPoints>
+      </RoundContainer>
+      <AnswersContainer>
+        {generateAnswerBoxColumns(answersList, updateRoundPoints)}
+      </AnswersContainer>
+      <RoundContainer>
+        <Button onClick={handleRoundEndClick}>End Round</Button>
+      </RoundContainer>
+    </>
+  );
+};
 
 const mapStateToProps = (state, ownProps) => {
   const { gameId, roundId } = ownProps;
@@ -92,7 +100,7 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(mapStateToProps)(GameBoard);
 
 GameBoard.propTypes = {
-  roundNumber: PropTypes.number.isRequired,
+  roundId: PropTypes.number.isRequired,
   roundPoints: PropTypes.number.isRequired,
   updateRoundPoints: PropTypes.func,
   answersList: PropTypes.arrayOf(PropTypes.shape({

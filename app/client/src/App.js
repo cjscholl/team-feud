@@ -8,6 +8,8 @@ import StartMenu from './components/StartMenu';
 import Game from './components/Game';
 import Header from './components/common/Header';
 import Content from './components/common/Content';
+import RoundOver from './components/RoundOver';
+import Winner from './components/Winner';
 
 export const App = () => (
   <>
@@ -16,7 +18,9 @@ export const App = () => (
       <Router basename="/teamfeud">
         <Route exact path="/" component={GameMenu} />
         <Route path="/start" component={StartMenu} />
-        <Route path="/game/:gameId/:roundId" component={Game} />
+        <Route path="/game/winner" component={Winner} />
+        <Route exact path="/game/:gameId/:roundId" component={Game} />
+        <Route exact path="/game/:gameId/:roundId/over" component={RoundOver} />
         {/* <Route path="/create" render={() => <CreateMenu />} /> */}
       </Router>
     </Content>
