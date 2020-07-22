@@ -63,8 +63,8 @@ export const Winner = ({
 };
 
 const mapStateToProps = (state) => ({
-  team1Score: state.team['1'].points,
-  team2Score: state.team['2'].points,
+  team1Score: state.teams['1'].points,
+  team2Score: state.teams['2'].points,
 });
 const mapDispatchToProps = () => ({
 });

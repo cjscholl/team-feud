@@ -1,12 +1,13 @@
-import { teamActionTypes } from '../actions/teamActions';
+import { teamActionTypes, strikeActionTypes } from '../actions/teamActions';
 
 const initialState = {
   1: {
     points: 0,
-
+    strikes: 0,
   },
   2: {
     points: 0,
+    strikes: 0,
   },
 
 };
@@ -26,6 +27,11 @@ export default (state = initialState, action) => {
       const teamState = state[teamNumber];
       const { points } = payload;
       return { ...state, [teamNumber]: { ...teamState, points } };
+    }
+    case strikeActionTypes.ADD_STRIKE: {
+      const { teamNumber } = payload;
+      const teamState = state[teamNumber];
+      return { ...state, [teamNumber]: { ...teamState, strikes: teamState.strikes + 1 } };
     }
     default: {
       return state;
