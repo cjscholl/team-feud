@@ -12,7 +12,7 @@ const Seconds = styled.div`
 const Pause = styled.button`
     padding: .6rem 1.5rem;
     margin: .4rem;
-    border-radius: 3px;
+    border-radius: 5px;
     text-transform: uppercase;
     font-weight: 600;
     font-size: .8rem;
@@ -30,7 +30,7 @@ const Pause = styled.button`
 const Reset = styled.button`
     padding: .6rem 1.5rem;
     margin: .4rem;
-    border-radius: 3px;
+    border-radius: 5px;
     text-transform: uppercase;
     font-weight: 600;
     font-size: .8rem;

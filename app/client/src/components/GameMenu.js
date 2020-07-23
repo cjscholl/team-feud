@@ -8,7 +8,7 @@ const StyledLink = styled(Link)`
   border: 3px solid #63326E;
   color: #63326E;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   text-decoration: none;
   margin: 10px;
   width: 100%;

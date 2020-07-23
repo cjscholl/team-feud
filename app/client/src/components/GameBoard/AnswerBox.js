@@ -9,8 +9,10 @@ const AnswerBoxContainer = styled.div`
     justify-content: center;
     align-items: center;
     height: 40px;
-    border: solid 2px #63D2FF;
+    border: solid 3px #63D2FF;
     margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
 `;
 
 export const AnswerNumberText = styled.span`

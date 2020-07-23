@@ -16,7 +16,7 @@ const SelectionMenu = styled.ul`
 const SelectionItem = styled.li`
     cursor: pointer;
     border: 3px solid #11B5E4;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 10px;
     margin: 10px;
     font-family: 'Oswald', sans-serif;
@@ -32,7 +32,7 @@ const SelectionItem = styled.li`
 
 const StartButton = styled.button`
     background-color: #53DD6C;
-    border-radius: 10px;
+    border-radius: 5px;
     font-size: 20px;
     border: none;
     color: white;
@@ -52,7 +52,7 @@ const StyledInput = styled.input`
     border: 3px solid #FF4D80;
     padding: 10px;
     margin: 10px 0;
-    border-radius: 10px;
+    border-radius: 5px;
 `;
 
 export const StartMenu = () => {
