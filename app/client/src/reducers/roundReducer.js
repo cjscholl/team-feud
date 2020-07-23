@@ -3,6 +3,7 @@ import { roundActionTypes } from '../actions/roundActions';
 const initialState = {
   number: 1,
   points: 0,
+  teamInPlay: 2,
 };
 
 export default (state = initialState, action) => {

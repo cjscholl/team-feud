@@ -2,12 +2,26 @@ import { teamActionTypes, strikeActionTypes } from '../actions/teamActions';
 
 const initialState = {
   1: {
+    teamName: 'Red',
     points: 0,
     strikes: 0,
+    teamMembers: [
+      'User Name',
+      'First Name',
+      'Last Name',
+      'Middle Name',
+    ],
   },
   2: {
+    teamName: 'Blue',
     points: 0,
     strikes: 0,
+    teamMembers: [
+      'Name User',
+      'Name First',
+      'Name Last',
+      'Name Middle',
+    ],
   },
 
 };
