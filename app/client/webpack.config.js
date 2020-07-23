@@ -35,6 +35,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: 'src/index.html' },
+        { from: 'src/audio/Buzzer.mp3' },
       ],
     }),
     new webpack.HotModuleReplacementPlugin(),
