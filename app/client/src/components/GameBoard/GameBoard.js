@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import AnswerBox from './AnswerBox';
 import Button from '../common/Button';
+import Timer from './Timer';
 
 const RoundContainer = styled.div`
   font-size: 30px;
@@ -82,6 +83,7 @@ export const GameBoard = ({
         {generateAnswerBoxColumns(answersList, updateRoundPoints)}
       </AnswersContainer>
       <RoundContainer>
+        <Timer />
         <Button onClick={handleRoundEndClick}>End Round</Button>
       </RoundContainer>
     </>
