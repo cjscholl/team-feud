@@ -8,9 +8,12 @@ const AnswerBoxContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
-    border: solid 3px #63D2FF;
-    margin: 5px;
+    height: 50px;
+    border: solid 3px black;
+    margin-right: ${(props) => (props.fiveOrUnder ? '5px' : '0')};
+    margin-left: ${(props) => (props.fiveOrUnder ? '0' : '5px')};
+    margin-top: 5px;
+    margin-bottom: 5px;
     border-radius: 5px;
     cursor: pointer;
 `;
@@ -23,11 +26,11 @@ export const AnswerNumberText = styled.span`
 `;
 
 export const AnswerBox = ({
-  answerNumber, answer, points, updateRoundPoints,
+  answerNumber, answer, points, updateRoundPoints, fiveOrUnder,
 }) => {
   const [isShowing, toggleIsShowing] = useState(false);
 
-  const dispalyText = isShowing ? `${answer} - ${points}` : <AnswerNumberText>{answerNumber}</AnswerNumberText>;
+  const displayText = isShowing ? `${answer} - ${points}` : <AnswerNumberText>{answerNumber}</AnswerNumberText>;
 
   const handleClick = () => {
     if (!isShowing) {
@@ -36,7 +39,12 @@ export const AnswerBox = ({
     }
   };
   return (
-    <AnswerBoxContainer onClick={handleClick}>{dispalyText}</AnswerBoxContainer>
+    <AnswerBoxContainer
+      fiveOrUnder={fiveOrUnder}
+      onClick={handleClick}
+    >
+      {displayText}
+    </AnswerBoxContainer>
   );
 };
 
@@ -49,6 +57,7 @@ AnswerBox.propTypes = {
   answer: PropTypes.string.isRequired,
   points: PropTypes.number.isRequired,
   updateRoundPoints: PropTypes.func,
+  fiveOrUnder: PropTypes.bool,
 };
 
 export default connect(undefined, mapDispatchToProps)(AnswerBox);

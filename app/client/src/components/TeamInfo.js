@@ -10,7 +10,7 @@ import * as roundSelectors from '../selectors/roundSelectors';
 const TeamHeader = styled.h2`
   color: ${(props) => (props.teamNumber === 1 ? '#0077B6' : '#DA344D')};
   font-size: 30px;
-  margin: 0;
+  margin: 10px 0 0 0;
 `;
 
 const PointsBox = styled.div`
@@ -35,7 +35,7 @@ const StyledTeamInfo = styled.div`
   align-items: center;
   background-color: ${(props) => {
     if (props.teamInPlay === 1 && props.teamNumber === 1) return '#CAF0F8';
-    if (props.teamInPlay === 2 && props.teamNumber === 2) return '#eca8a6';
+    if (props.teamInPlay === 2 && props.teamNumber === 2) return '#fbcbc9';
     return 'none';
   }};
   height: 100%;

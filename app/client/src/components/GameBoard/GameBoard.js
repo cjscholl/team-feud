@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import AnswerBox from './AnswerBox';
 import Button from '../common/Button';
 import Timer from './Timer';
+import * as roundActions from '../../actions/roundActions';
 
 const RoundContainer = styled.div`
   font-size: 30px;
@@ -13,6 +14,15 @@ const RoundContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const FlexContainer = styled.div`
+  font-size: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `;
 
 const AnswersContainer = styled.div` 
@@ -45,13 +55,15 @@ const RevealContainer = styled.div`
   border-radius: 5px;
   box-sizing: border-box;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 20px;
   width: 100%;
   transition: transform 2s;
   transform: ${(props) => (props.showQuestion ? 'rotateX(180deg)' : 'none')};
   transform-style: preserve-3d;
   backface-visibility: hidden;
   position: absolute;
+  height: 50px;
+  line-height: 45px;
 `;
 
 const QuestionContainer = styled.div`
@@ -59,20 +71,27 @@ const QuestionContainer = styled.div`
   border-radius: 5px;
   box-sizing: border-box;
   background-color: #63D2FF;
-  font-size: 15px;
+  font-size: 20px;
   width: 100%;
   transition: transform 2s;
   transform: ${(props) => (props.showQuestion ? 'none' : 'rotateX(180deg)')};
   backface-visibility: hidden;
   position: absolute;
-  
+  height: 50px;
+  line-height: 45px;
 `;
 
 const StyledDiv = styled.div`
   position: relative;
   width: 100%;
-  height: 30px;
+  height: 50px;
   margin: 14px 0 8px 0;
+`;
+
+const Arrow = styled.svg`
+  fill: ${(props) => (props.left ? '#00B4D8' : '#EC5766')};
+  margin: 20px;
+  cursor: pointer;
 `;
 
 export const generateAnswerBoxColumns = (answersList) => {
@@ -83,7 +102,13 @@ export const generateAnswerBoxColumns = (answersList) => {
       <AnswerColumn>
         {columnOne.map(
           ({ answer, points }, index) => (
-            <AnswerBox key={answer} answerNumber={index + 1} answer={answer} points={points} />
+            <AnswerBox
+              key={answer}
+              fiveOrUnder
+              answerNumber={index + 1}
+              answer={answer}
+              points={points}
+            />
           ),
         )}
       </AnswerColumn>
@@ -91,7 +116,13 @@ export const generateAnswerBoxColumns = (answersList) => {
       <AnswerColumn>
         {columnTwo.map(
           ({ answer, points }, index) => (
-            <AnswerBox key={answer} answerNumber={index + 6} answer={answer} points={points} />
+            <AnswerBox
+              key={answer}
+              fiveOrUnder={false}
+              answerNumber={index + 6}
+              answer={answer}
+              points={points}
+            />
           ),
         )}
       </AnswerColumn>
@@ -101,7 +132,7 @@ export const generateAnswerBoxColumns = (answersList) => {
 };
 
 export const GameBoard = ({
-  roundId, roundPoints, answersList, updateRoundPoints, question,
+  roundId, roundPoints, answersList, updateRoundPoints, question, setTeamInPlay,
 }) => {
   const history = useHistory();
   const location = useLocation();
@@ -123,14 +154,20 @@ export const GameBoard = ({
       <AnswersContainer>
         {generateAnswerBoxColumns(answersList, updateRoundPoints)}
       </AnswersContainer>
-      <svg height="40" width="40">
-        <polygon points="0,20 40,40 40,0" />
-        Sorry, your browser does not support inline SVG.
-      </svg>
-      <RoundContainer>
-        <Timer />
-        <Button onClick={handleRoundEndClick}>End Round</Button>
-      </RoundContainer>
+      <FlexContainer>
+        <Arrow onClick={() => setTeamInPlay(1)} left height="40" width="40">
+          <polygon points="0,20 40,40 40,0" />
+          Sorry, your browser does not support inline SVG.
+        </Arrow>
+        <RoundContainer>
+          <Timer />
+          <Button onClick={handleRoundEndClick}>End Round</Button>
+        </RoundContainer>
+        <Arrow onClick={() => setTeamInPlay(2)} height="40" width="40">
+          <polygon points="0,40 40,20 0,0" />
+          Sorry, your browser does not support inline SVG.
+        </Arrow>
+      </FlexContainer>
     </>
   );
 };
@@ -145,7 +182,11 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(GameBoard);
+const mapDispatchToProps = (dispatch) => ({
+  setTeamInPlay: (points) => dispatch(roundActions.setTeamInPlay(points)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(GameBoard);
 
 GameBoard.propTypes = {
   roundId: PropTypes.number.isRequired,
@@ -156,4 +197,5 @@ GameBoard.propTypes = {
     answer: PropTypes.string,
     points: PropTypes.points,
   })).isRequired,
+  setTeamInPlay: PropTypes.func,
 };
