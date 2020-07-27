@@ -21,7 +21,7 @@ const PointsBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid #172A3A;
+  border: 2px solid #bdbdbd;
 `;
 
 const TeamScore = styled.span`
@@ -33,6 +33,7 @@ const StyledTeamInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   background-color: ${(props) => {
     if (props.teamInPlay === 1 && props.teamNumber === 1) return '#CAF0F8';
     if (props.teamInPlay === 2 && props.teamNumber === 2) return '#fbcbc9';
@@ -61,7 +62,7 @@ const Strike = styled.span`
 
 const StrikeContainer = styled.div`
   display: flex;
-  border: 3px solid black;
+  border: 2px solid #bdbdbd;
   border-radius: 5px;
   width: 300px;
   background-color: white;
@@ -83,17 +84,19 @@ const StrikeButton = styled.button`
   }
   outline: none;
   margin-top: 30px;
+  margin-bottom: 30px;
   cursor: pointer;
 `;
 
 const TeamContainer = styled.div`
-  border: 3px solid black;
+  border: 2px solid #bdbdbd;
   border-radius: 5px;
   width: 300px;
   padding: 20px;
   box-sizing: border-box;
   overflow: auto;
   max-height: 220px;
+  background-color: white;
 `;
 
 const TeamMember = styled.div`

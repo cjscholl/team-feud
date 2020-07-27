@@ -9,13 +9,14 @@ const AnswerBoxContainer = styled.div`
     justify-content: center;
     align-items: center;
     height: 50px;
-    border: solid 3px black;
+    border: solid 2px white;
     margin-right: ${(props) => (props.fiveOrUnder ? '5px' : '0')};
     margin-left: ${(props) => (props.fiveOrUnder ? '0' : '5px')};
     margin-top: 5px;
     margin-bottom: 5px;
     border-radius: 5px;
     cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1), 0 2px 2px rgba(0,0,0,.06), 0 0 2px rgba(0,0,0,.07);
 `;
 
 export const AnswerNumberText = styled.span`

@@ -1,5 +1,5 @@
-export const testData = [
-  {
+export const testData = {
+  1: {
     gameName: 'Tom Team Feud',
     id: '1',
     rounds: [
@@ -8,6 +8,12 @@ export const testData = [
         answers: [
           { answer: 'Answer1', points: 23 },
           { answer: 'Answer2', points: 15 },
+          { answer: 'Answer3', points: 12 },
+          { answer: 'Answer3', points: 12 },
+          { answer: 'Answer3', points: 12 },
+          { answer: 'Answer3', points: 12 },
+          { answer: 'Answer3', points: 12 },
+          { answer: 'Answer3', points: 12 },
           { answer: 'Answer3', points: 12 },
         ],
       },
@@ -29,7 +35,7 @@ export const testData = [
       },
     ],
   },
-  {
+  2: {
     gameName: 'Josh Team Feud',
     id: '2',
     rounds: [
@@ -59,7 +65,7 @@ export const testData = [
       },
     ],
   },
-  {
+  3: {
     gameName: 'Catelyn Team Feud',
     id: '3',
     rounds: [
@@ -89,4 +95,4 @@ export const testData = [
       },
     ],
   },
-];
+};

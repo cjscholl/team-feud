@@ -47,11 +47,11 @@ const RoundPoints = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid #172A3A;
+  border: 2px solid #bdbdbd;
 `;
 
 const RevealContainer = styled.div`
-  border: 3px solid #63D2FF;
+  background-color: #f7f4f4;
   border-radius: 5px;
   box-sizing: border-box;
   cursor: pointer;
@@ -64,13 +64,14 @@ const RevealContainer = styled.div`
   position: absolute;
   height: 50px;
   line-height: 45px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.1), 0 2px 2px rgba(0,0,0,.06), 0 0 2px rgba(0,0,0,.07);
+
 `;
 
 const QuestionContainer = styled.div`
-  border: 3px solid black;
   border-radius: 5px;
   box-sizing: border-box;
-  background-color: #63D2FF;
+  background-color: #f7f4f4;
   font-size: 20px;
   width: 100%;
   transition: transform 2s;
@@ -79,6 +80,8 @@ const QuestionContainer = styled.div`
   position: absolute;
   height: 50px;
   line-height: 45px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.1), 0 2px 2px rgba(0,0,0,.06), 0 0 2px rgba(0,0,0,.07);
+
 `;
 
 const StyledDiv = styled.div`
@@ -177,8 +180,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     roundPoints: state.round.points,
     roundNumber: state.round.number,
-    answersList: state.games[gameId].rounds[roundId].answers,
-    question: state.games[gameId].rounds[roundId].question,
+    answersList: state.games[gameId].rounds[roundId - 1].answers,
+    question: state.games[gameId].rounds[roundId - 1].question,
   };
 };
 
