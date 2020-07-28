@@ -97,7 +97,7 @@ const Arrow = styled.svg`
   cursor: pointer;
 `;
 
-export const generateAnswerBoxColumns = (answersList) => {
+export const generateAnswerBoxColumns = (answersList, isRoundOver) => {
   const columnOne = answersList.slice(0, 5);
   const columnTwo = answersList.slice(5);
   return (
@@ -111,6 +111,7 @@ export const generateAnswerBoxColumns = (answersList) => {
               answerNumber={index + 1}
               answer={answer}
               points={points}
+              isRoundOver={isRoundOver}
             />
           ),
         )}
@@ -125,6 +126,7 @@ export const generateAnswerBoxColumns = (answersList) => {
               answerNumber={index + 6}
               answer={answer}
               points={points}
+              isRoundOver={isRoundOver}
             />
           ),
         )}
@@ -135,18 +137,23 @@ export const generateAnswerBoxColumns = (answersList) => {
 };
 
 export const GameBoard = ({
-  roundId, roundPoints, answersList, updateRoundPoints, question, setTeamInPlay, clearStrikes,
+  roundId, roundPoints, answersList, question, setTeamInPlay, clearStrikes,
 }) => {
+  const [isRoundOver, setRoundOver] = useState(false);
   const history = useHistory();
   const location = useLocation();
   const [showQuestion, toggleQuestion] = useState(false);
   const handleRoundEndClick = () => {
+    setRoundOver(true);
+  };
+  const handleAssignPoints = () => {
     clearStrikes();
     history.push(`${location.pathname}/over`);
   };
   const handleToggleQuestion = () => {
     toggleQuestion(true);
   };
+
   return (
     <>
       <RoundContainer>
@@ -158,7 +165,7 @@ export const GameBoard = ({
         </StyledDiv>
       </RoundContainer>
       <AnswersContainer>
-        {generateAnswerBoxColumns(answersList, updateRoundPoints)}
+        {generateAnswerBoxColumns(answersList, isRoundOver)}
       </AnswersContainer>
       <FlexContainer>
         <Arrow onClick={() => setTeamInPlay(1)} left height="40" width="40">
@@ -167,7 +174,9 @@ export const GameBoard = ({
         </Arrow>
         <RoundContainer>
           <Timer />
-          <Button onClick={handleRoundEndClick}>End Round</Button>
+          {!isRoundOver
+            ? <Button onClick={handleRoundEndClick}>End Round & View Answers</Button>
+            : <Button onClick={handleAssignPoints}>Assign Points</Button>}
         </RoundContainer>
         <Arrow onClick={() => setTeamInPlay(2)} height="40" width="40">
           <polygon points="0,40 40,20 0,0" />
@@ -198,7 +207,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(GameBoard);
 GameBoard.propTypes = {
   roundId: PropTypes.number.isRequired,
   roundPoints: PropTypes.number.isRequired,
-  updateRoundPoints: PropTypes.func,
   question: PropTypes.string,
   answersList: PropTypes.arrayOf(PropTypes.shape({
     answer: PropTypes.string,
