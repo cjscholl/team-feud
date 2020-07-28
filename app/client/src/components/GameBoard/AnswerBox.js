@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable jsx-a11y/media-has-caption */
+import React, { useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -29,6 +30,7 @@ export const AnswerNumberText = styled.span`
 export const AnswerBox = ({
   answerNumber, answer, points, updateRoundPoints, fiveOrUnder, isRoundOver,
 }) => {
+  const audio = useRef(null);
   const [isShowing, toggleIsShowing] = useState(false);
 
   const displayText = isShowing ? `${answer} - ${points}` : <AnswerNumberText>{answerNumber}</AnswerNumberText>;
@@ -36,6 +38,7 @@ export const AnswerBox = ({
   const handleClick = () => {
     if (!isShowing) {
       toggleIsShowing(true);
+      audio.current.play();
       if (!isRoundOver) updateRoundPoints(points);
     } else {
       toggleIsShowing(false);
@@ -48,6 +51,10 @@ export const AnswerBox = ({
       fiveOrUnder={fiveOrUnder}
       onClick={handleClick}
     >
+      <audio
+        ref={audio}
+        src="/teamfeud/CorrectAnswer.mp3"
+      />
       {displayText}
     </AnswerBoxContainer>
   );
