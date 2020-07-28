@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -119,6 +119,23 @@ export const TeamInfo = ({
       addStrike(teamNumber);
     }
   };
+
+  const handleKeyDown = (e) => {
+    const index = teamMembers.indexOf(selectedMember);
+    if (teamInPlay === teamNumber) {
+      if (e.key === 'ArrowUp' && index !== 0) {
+        setSelectedMember(teamMembers[index - 1]);
+      } else if (e.key === 'ArrowDown' && index !== teamMembers.length - 1) {
+        setSelectedMember(teamMembers[index + 1]);
+      }
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return function cleanup() {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  });
   return (
     <StyledTeamInfo teamInPlay={teamInPlay} teamNumber={teamNumber} id={teamId}>
       <TeamHeader teamNumber={teamNumber}>{`Team ${teamNumber}: ${teamName}`}</TeamHeader>

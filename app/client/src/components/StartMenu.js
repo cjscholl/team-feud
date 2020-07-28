@@ -47,6 +47,10 @@ const StartButton = styled.button`
     &:hover {
         box-shadow: 0 0 11px rgba(33,33,33,.2); 
     }
+
+    &:disabled {
+      background-color: grey;
+    }
     
 `;
 
@@ -144,7 +148,12 @@ export const StartMenu = ({ teamOptions, games, setSelectedTeams }) => {
           </SelectionItem>
         ))}
       </SelectionMenu>
-      <StartButton onClick={handleStartGame}>Start!</StartButton>
+      <StartButton
+        disabled={!team1 || !team2 || !selectedGameId}
+        onClick={handleStartGame}
+      >
+        Start!
+      </StartButton>
     </StartMenuContainer>
   );
 };
