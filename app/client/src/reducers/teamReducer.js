@@ -1,10 +1,11 @@
 import { teamActionTypes, strikeActionTypes } from '../actions/teamActions';
+import { gamesActionTypes } from '../actions/gamesActions';
 
 const initialState = {
   1: {
     points: 0,
     strikes: 0,
-    teamName: 'Red',
+    teamName: 'Blue',
     teamMembers: [],
   },
   2: {
@@ -44,6 +45,22 @@ export default (state = initialState, action) => {
       const { teamNumber } = payload;
       const teamState = state[teamNumber];
       return { ...state, [teamNumber]: { ...teamState, strikes: teamState.strikes + 1 } };
+    }
+    case strikeActionTypes.CLEAR_STRIKES: {
+      const team1State = state['1'];
+      const team2State = state['2'];
+      return {
+        ...state,
+        1: {
+          ...team1State, strikes: 0,
+        },
+        2: {
+          ...team2State, strikes: 0,
+        },
+      };
+    }
+    case gamesActionTypes.RESET_GAME: {
+      return { ...initialState };
     }
     default: {
       return state;

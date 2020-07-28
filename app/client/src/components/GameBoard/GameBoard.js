@@ -135,12 +135,15 @@ export const generateAnswerBoxColumns = (answersList) => {
 };
 
 export const GameBoard = ({
-  roundId, roundPoints, answersList, updateRoundPoints, question, setTeamInPlay,
+  roundId, roundPoints, answersList, updateRoundPoints, question, setTeamInPlay, clearStrikes,
 }) => {
   const history = useHistory();
   const location = useLocation();
   const [showQuestion, toggleQuestion] = useState(false);
-  const handleRoundEndClick = () => { history.push(`${location.pathname}/over`); };
+  const handleRoundEndClick = () => {
+    clearStrikes();
+    history.push(`${location.pathname}/over`);
+  };
   const handleToggleQuestion = () => {
     toggleQuestion(true);
   };
@@ -187,6 +190,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => ({
   setTeamInPlay: (points) => dispatch(roundActions.setTeamInPlay(points)),
+  clearStrikes: () => dispatch({ type: roundActions.roundActionTypes.CLEAR_STRIKES }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameBoard);
@@ -201,4 +205,5 @@ GameBoard.propTypes = {
     points: PropTypes.points,
   })).isRequired,
   setTeamInPlay: PropTypes.func,
+  clearStrikes: PropTypes.func,
 };

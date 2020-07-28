@@ -2,6 +2,7 @@ export const roundActionTypes = {
   ADD_ROUND_POINTS: 'ADD_ROUND_POINTS',
   SET_ROUND_POINTS: 'SET_ROUND_POINTS',
   SET_TEAM_IN_PLAY: 'SET_TEAM_IN_PLAY',
+  CLEAR_STRIKES: 'CLEAR_STRIKES',
 };
 
 export const addToRoundPoints = (pointsToAdd) => ({
