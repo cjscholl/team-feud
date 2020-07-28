@@ -27,7 +27,7 @@ export const AnswerNumberText = styled.span`
 `;
 
 export const AnswerBox = ({
-  answerNumber, answer, points, updateRoundPoints, fiveOrUnder,
+  answerNumber, answer, points, updateRoundPoints, fiveOrUnder, isRoundOver,
 }) => {
   const [isShowing, toggleIsShowing] = useState(false);
 
@@ -35,10 +35,14 @@ export const AnswerBox = ({
 
   const handleClick = () => {
     if (!isShowing) {
-      toggleIsShowing(!isShowing);
-      updateRoundPoints(points);
+      toggleIsShowing(true);
+      if (!isRoundOver) updateRoundPoints(points);
+    } else {
+      toggleIsShowing(false);
+      if (!isRoundOver) updateRoundPoints((points * -1));
     }
   };
+
   return (
     <AnswerBoxContainer
       fiveOrUnder={fiveOrUnder}
@@ -59,6 +63,7 @@ AnswerBox.propTypes = {
   points: PropTypes.number.isRequired,
   updateRoundPoints: PropTypes.func,
   fiveOrUnder: PropTypes.bool,
+  isRoundOver: PropTypes.bool,
 };
 
 export default connect(undefined, mapDispatchToProps)(AnswerBox);
