@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useParams, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Button from './common/Button';
+import { roundsPerGame } from '../constants/roundConstants';
 import { addToTeamPoints } from '../actions/teamActions';
 import { setRoundPoints } from '../actions/roundActions';
 
@@ -68,7 +69,7 @@ export const RoundOver = ({
   const advanceRound = () => {
     const nextRound = parseInt(roundId, 10) + 1;
     setTimeout(() => {
-      if (nextRound <= 3) history.push(`/game/${gameId}/${nextRound}`);
+      if (nextRound <= roundsPerGame) history.push(`/game/${gameId}/${nextRound}`);
       else history.push('/game/winner');
     }, 1000);
   };
