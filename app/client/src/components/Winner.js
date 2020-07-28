@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ConfettiGenerator from 'confetti-js';
 import Button from './common/Button';
+import { gamesActionTypes } from '../actions/gamesActions';
 
 const WinnerText = styled.div`
   color: #8AEA92;
@@ -30,7 +31,7 @@ const MenuButton = styled(Button)`
   z-index: 1;
 `;
 export const Winner = ({
-  team1Score, team2Score,
+  team1Score, team2Score, resetGame,
 }) => {
   const history = useHistory();
   let winningText = '';
@@ -40,6 +41,7 @@ export const Winner = ({
   } else winningText = 'Its a tie!';
 
   const handleMenuClick = () => {
+    resetGame();
     history.push('/');
   };
 
@@ -66,7 +68,8 @@ const mapStateToProps = (state) => ({
   team1Score: state.teams['1'].points,
   team2Score: state.teams['2'].points,
 });
-const mapDispatchToProps = () => ({
+const mapDispatchToProps = (dispatch) => ({
+  resetGame: () => dispatch({ type: gamesActionTypes.RESET_GAME }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Winner);
@@ -74,4 +77,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(Winner);
 Winner.propTypes = {
   team1Score: PropTypes.number.isRequired,
   team2Score: PropTypes.number.isRequired,
+  resetGame: PropTypes.func,
 };

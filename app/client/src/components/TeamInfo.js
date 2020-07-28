@@ -114,8 +114,10 @@ export const TeamInfo = ({
   const [selectedMember, setSelectedMember] = useState('');
   const audio = useRef(null);
   const handleAddStrike = () => {
-    audio.current.play();
-    addStrike(teamNumber);
+    if (strikes < 3) {
+      audio.current.play();
+      addStrike(teamNumber);
+    }
   };
   return (
     <StyledTeamInfo teamInPlay={teamInPlay} teamNumber={teamNumber} id={teamId}>
