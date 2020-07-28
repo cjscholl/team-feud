@@ -25,11 +25,11 @@ const PointsBox = styled.div`
   background: white;
   height: 50px;
   width: 150px;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid #172A3A;
+  border: 2px solid #bdbdbd;
   margin-top: 1rem;
 `;
 
@@ -47,11 +47,11 @@ const RoundPoints = styled.div`
   height: 50px;
   width: 150px;
   color: #8AEA92;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid #172A3A;
+  border: 2px solid #bdbdbd;
 `;
 
 const TeamScore = styled.span`

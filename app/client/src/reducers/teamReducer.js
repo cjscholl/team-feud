@@ -4,10 +4,14 @@ const initialState = {
   1: {
     points: 0,
     strikes: 0,
+    teamName: 'Red',
+    teamMembers: [],
   },
   2: {
     points: 0,
     strikes: 0,
+    teamName: 'Red',
+    teamMembers: [],
   },
 
 };
@@ -27,6 +31,14 @@ export default (state = initialState, action) => {
       const teamState = state[teamNumber];
       const { points } = payload;
       return { ...state, [teamNumber]: { ...teamState, points } };
+    }
+    case teamActionTypes.SET_SELECTED_TEAMS: {
+      const { team1, team2 } = payload;
+      return {
+        ...state,
+        1: { ...state[team1], teamName: team1.teamName, teamMembers: team1.teamMembers },
+        2: { ...state[team2], teamName: team2.teamName, teamMembers: team2.teamMembers },
+      };
     }
     case strikeActionTypes.ADD_STRIKE: {
       const { teamNumber } = payload;

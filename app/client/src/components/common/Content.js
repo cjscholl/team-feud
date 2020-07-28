@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const StyledContent = styled.div`
     background: white;
     font-family: 'Oswald', sans-serif;  
-    margin: 0px 100px;  
+    margin: 0px 25px;  
 `;
 
 export const Content = ({ children }) => <StyledContent>{children}</StyledContent>;

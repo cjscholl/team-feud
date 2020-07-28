@@ -1,6 +1,7 @@
 export const teamActionTypes = {
   ADD_TEAM_POINTS: 'ADD_TEAM_POINTS',
   SET_TEAM_POINTS: 'SET_TEAM_POINTS',
+  SET_SELECTED_TEAMS: 'SET_SELECTED_TEAMS',
 };
 
 export const strikeActionTypes = {
@@ -32,5 +33,13 @@ export const setTeamPoints = (teamNumber, points) => ({
   payload: {
     teamNumber,
     points,
+  },
+});
+
+export const setSelectedTeams = (team1, team2) => ({
+  type: teamActionTypes.SET_SELECTED_TEAMS,
+  payload: {
+    team1,
+    team2,
   },
 });
