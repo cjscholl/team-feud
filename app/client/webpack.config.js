@@ -36,6 +36,7 @@ module.exports = {
       patterns: [
         { from: 'src/index.html' },
         { from: 'src/audio/Buzzer.mp3' },
+        { from: 'src/audio/CorrectAnswer.mp3' },
       ],
     }),
     new webpack.HotModuleReplacementPlugin(),

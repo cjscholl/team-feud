@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
@@ -143,6 +143,7 @@ export const GameBoard = ({
   const history = useHistory();
   const location = useLocation();
   const [showQuestion, toggleQuestion] = useState(false);
+
   const handleRoundEndClick = () => {
     setRoundOver(true);
   };
@@ -153,6 +154,20 @@ export const GameBoard = ({
   const handleToggleQuestion = () => {
     toggleQuestion(true);
   };
+
+  const handleToggleTeam = (e) => {
+    if (e.key === 'ArrowRight') {
+      setTeamInPlay(2);
+    } else if (e.key === 'ArrowLeft') {
+      setTeamInPlay(1);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('keydown', handleToggleTeam);
+    return function cleanup() {
+      window.removeEventListener('keydown', handleToggleTeam);
+    };
+  });
 
   return (
     <>
@@ -168,7 +183,7 @@ export const GameBoard = ({
         {generateAnswerBoxColumns(answersList, isRoundOver)}
       </AnswersContainer>
       <FlexContainer>
-        <Arrow onClick={() => setTeamInPlay(1)} left height="40" width="40">
+        <Arrow tabIndex={0} onKeyDown={handleToggleTeam} onClick={() => setTeamInPlay(1)} left height="40" width="40">
           <polygon points="0,20 40,40 40,0" />
           Sorry, your browser does not support inline SVG.
         </Arrow>
@@ -178,7 +193,7 @@ export const GameBoard = ({
             ? <Button onClick={handleRoundEndClick}>End Round & View Answers</Button>
             : <Button onClick={handleAssignPoints}>Assign Points</Button>}
         </RoundContainer>
-        <Arrow onClick={() => setTeamInPlay(2)} height="40" width="40">
+        <Arrow tabIndex={0} onKeyDown={handleToggleTeam} onClick={() => setTeamInPlay(2)} height="40" width="40">
           <polygon points="0,40 40,20 0,0" />
           Sorry, your browser does not support inline SVG.
         </Arrow>

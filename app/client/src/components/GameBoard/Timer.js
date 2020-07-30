@@ -6,7 +6,7 @@ const Container = styled.div`
 `;
 
 const Seconds = styled.div`
-    color: ${(props) => (props.under5 ? 'red' : 'black')}
+    color: ${(props) => (props.under3 ? 'red' : 'black')}
 `;
 
 const Pause = styled.button`
@@ -45,7 +45,7 @@ const Reset = styled.button`
 `;
 
 export const Timer = () => {
-  const [seconds, setSeconds] = useState(15);
+  const [seconds, setSeconds] = useState(8);
   const [isActive, setIsActive] = useState(false);
 
   const toggleTimer = () => {
@@ -53,7 +53,7 @@ export const Timer = () => {
   };
 
   const resetTimer = () => {
-    setSeconds(15);
+    setSeconds(8);
     setIsActive(false);
   };
 
@@ -71,7 +71,7 @@ export const Timer = () => {
 
   return (
     <Container>
-      <Seconds under5={seconds <= 5}>{`${seconds}s`}</Seconds>
+      <Seconds under3={seconds <= 3}>{`${seconds}s`}</Seconds>
       <div>
         <Pause active={isActive} onClick={toggleTimer}>{isActive ? 'Pause' : 'Start'}</Pause>
         <Reset onClick={resetTimer}>Reset</Reset>

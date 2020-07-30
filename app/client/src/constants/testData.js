@@ -17,22 +17,6 @@ export const testData = {
           { answer: 'Answer3', points: 12 },
         ],
       },
-      {
-        question: 'This is question 2',
-        answers: [
-          { answer: 'Answer1', points: 23 },
-          { answer: 'Answer2', points: 15 },
-          { answer: 'Answer3', points: 12 },
-        ],
-      },
-      {
-        question: 'This is question 2',
-        answers: [
-          { answer: 'Answer1', points: 23 },
-          { answer: 'Answer2', points: 15 },
-          { answer: 'Answer3', points: 12 },
-        ],
-      },
     ],
   },
   2: {
@@ -47,22 +31,7 @@ export const testData = {
           { answer: 'Answer3', points: 12 },
         ],
       },
-      {
-        question: 'This is question 2',
-        answers: [
-          { answer: 'Answer1', points: 23 },
-          { answer: 'Answer2', points: 15 },
-          { answer: 'Answer3', points: 12 },
-        ],
-      },
-      {
-        question: 'This is question 2',
-        answers: [
-          { answer: 'Answer1', points: 23 },
-          { answer: 'Answer2', points: 15 },
-          { answer: 'Answer3', points: 12 },
-        ],
-      },
+
     ],
   },
   3: {
@@ -71,22 +40,6 @@ export const testData = {
     rounds: [
       {
         question: 'This is question 1',
-        answers: [
-          { answer: 'Answer1', points: 23 },
-          { answer: 'Answer2', points: 15 },
-          { answer: 'Answer3', points: 12 },
-        ],
-      },
-      {
-        question: 'This is question 2',
-        answers: [
-          { answer: 'Answer1', points: 23 },
-          { answer: 'Answer2', points: 15 },
-          { answer: 'Answer3', points: 12 },
-        ],
-      },
-      {
-        question: 'This is question 2',
         answers: [
           { answer: 'Answer1', points: 23 },
           { answer: 'Answer2', points: 15 },

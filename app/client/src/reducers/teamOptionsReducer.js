@@ -3,7 +3,7 @@ import { teamOptionsActionTypes } from '../actions/teamOptionsActions';
 const initialState = {
   1: {
     teamName: 'Red',
-    members: [
+    teamMembers: [
       'Josh',
       'Catelyn',
       'Tom',
@@ -11,7 +11,7 @@ const initialState = {
   },
   2: {
     teamName: 'Blue',
-    members: [
+    teamMembers: [
       'Mark',
       'Marq',
       'Andrew',

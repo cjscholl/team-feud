@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as gamesSelectors from '../selectors/gamesSelectors';
 import * as teamActions from '../actions/teamActions';
+import * as selectGameActions from '../actions/selectGameAction';
 
 const StartMenuContainer = styled.div`
     display: flex;
@@ -46,6 +47,10 @@ const StartButton = styled.button`
 
     &:hover {
         box-shadow: 0 0 11px rgba(33,33,33,.2); 
+    }
+
+    &:disabled {
+      background-color: grey;
     }
     
 `;
@@ -89,7 +94,9 @@ const FlexContainer = styled.div`
     margin: ${(props) => props.margin}
 `;
 
-export const StartMenu = ({ teamOptions, games, setSelectedTeams }) => {
+export const StartMenu = ({
+  teamOptions, games, setSelectedTeams, selectGameAction,
+}) => {
   const history = useHistory();
   const [team1, setTeam1] = useState('');
   const [team2, setTeam2] = useState('');
@@ -99,6 +106,7 @@ export const StartMenu = ({ teamOptions, games, setSelectedTeams }) => {
     const team1Info = teamOptions[team1];
     const team2Info = teamOptions[team2];
     if (team1Info && team2Info) { setSelectedTeams(team1Info, team2Info); }
+    selectGameAction(selectedGameId);
     history.push(`/game/${selectedGameId}/1`);
   };
 
@@ -144,7 +152,12 @@ export const StartMenu = ({ teamOptions, games, setSelectedTeams }) => {
           </SelectionItem>
         ))}
       </SelectionMenu>
-      <StartButton onClick={handleStartGame}>Start!</StartButton>
+      <StartButton
+        disabled={!team1 || !team2 || !selectedGameId}
+        onClick={handleStartGame}
+      >
+        Start!
+      </StartButton>
     </StartMenuContainer>
   );
 };
@@ -155,6 +168,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  selectGameAction: (gameId) => dispatch(selectGameActions.selectGameAction(gameId)),
   setSelectedTeams: (team1, team2) => dispatch(teamActions.setSelectedTeams(team1, team2)),
 });
 
@@ -166,5 +180,6 @@ StartMenu.propTypes = {
     teamName: 'string',
   }),
   setSelectedTeams: PropTypes.func,
+  selectGameAction: PropTypes.func,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(StartMenu);

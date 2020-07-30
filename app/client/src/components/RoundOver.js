@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import { useParams, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Button from './common/Button';
-import { roundsPerGame } from '../constants/roundConstants';
 import { addToTeamPoints } from '../actions/teamActions';
 import { setRoundPoints } from '../actions/roundActions';
+import * as gamesSelectors from '../selectors/gamesSelectors';
 
 const RoundContainer = styled.div`
   font-size: 30px;
@@ -61,7 +61,7 @@ const TeamScore = styled.span`
 `;
 
 export const RoundOver = ({
-  roundPoints, team1Score, team2Score, onWinClick,
+  roundPoints, team1Score, team2Score, onWinClick, roundsPerGame,
 }) => {
   const history = useHistory();
   const { gameId, roundId } = useParams();
@@ -103,12 +103,17 @@ export const RoundOver = ({
   );
 };
 
-const mapStateToProps = (state) => ({
-  roundPoints: state.round.points,
-  roundNumber: state.round.number,
-  team1Score: state.teams['1'].points,
-  team2Score: state.teams['2'].points,
-});
+const mapStateToProps = (state, ownProps) => {
+  const { gameId } = ownProps.match.params;
+  return ({
+    roundPoints: state.round.points,
+    roundNumber: state.round.number,
+    team1Score: state.teams['1'].points,
+    team2Score: state.teams['2'].points,
+    roundsPerGame: gamesSelectors.roundsPerGame(gameId)(state),
+  });
+};
+
 const mapDispatchToProps = (dispatch) => ({
   onWinClick: (teamNumber, points) => {
     dispatch(addToTeamPoints(teamNumber, points));
@@ -123,4 +128,5 @@ RoundOver.propTypes = {
   onWinClick: PropTypes.func,
   team1Score: PropTypes.number,
   team2Score: PropTypes.number,
+  roundsPerGame: PropTypes.number,
 };
