@@ -1,4 +1,5 @@
 import { roundActionTypes } from '../actions/roundActions';
+import { strikeActionTypes } from '../actions/teamActions';
 
 const initialState = {
   number: 1,
@@ -21,6 +22,9 @@ export default (state = initialState, action) => {
     case roundActionTypes.SET_TEAM_IN_PLAY: {
       const { teamNumber } = payload;
       return { ...state, teamInPlay: teamNumber };
+    }
+    case strikeActionTypes.CLEAR_STRIKES: {
+      return { ...state, teamInPlay: 0 };
     }
     default: {
       return state;
